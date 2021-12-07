@@ -17,8 +17,8 @@ html, body {
 }
 
 .slider-container {
-    height: 100vh; /*viewport height: take up space of whole browser*/
-    display: inline-flex; /*lines each slider img horizontally. if uncomment overflow: hidden above, you will see it*/
+    height: 100vh;
+    display: inline-flex;
     overflow: hidden;
     transform: translateX(0);/*default=0, this is for JS*/
     transition: transform 0.3s ease-out;
@@ -27,23 +27,23 @@ html, body {
 
 .slide {
     max-height: 100vh;
-    width: 100vw;/*occupy whole page*/
-    display: flex;/*align everything*/
-    flex-direction: column; /*price goes below heading*/
+    width: 100vw;
+    display: flex;
+    flex-direction: column; 
     align-items: center;
-    justify-content: center; /*centered hori+verti*/
+    justify-content: center;
     padding: 1rem;
-    user-select: none;/*so user wont accidentally select whole page if sliding in wrong direction*/
+    user-select: none;
 }
 
 .slide img {
-    max-width: 100%; /*take up full container width*/
+    max-width: 100%; 
     max-height: 70%;
 }
 
 .slide h2 {
     font-size: 2.5rem;
-    margin-bottom: 0.5rem ;/*move price down*/
+    margin-bottom: 0.5rem ;
 }
 
 .slide h4 {
