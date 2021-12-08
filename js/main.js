@@ -8,8 +8,8 @@ let isDragging = false,
     startPos = 0,
     currentTranslate = 0,
     previousTranslate = 0,
-    animationId = 0,//will use a method on the window object called requestAnimationFrame(). Returns specific id we can use to cancel requestframe
-    currentIndex = 0 //reps current slide
+    animationId = 0,
+    currentIndex = 0 
 
    
     slides.forEach((slide, index) => {
