@@ -1,12 +1,10 @@
 const slider = document.querySelector('.slider-container'), 
-//array.from takes array-like obj eg:domlist and turn it into an array / from an iterable obj
+
 slides = Array.from(document.querySelectorAll('.slide'))
 
-//set global variable values
 
-let isDragging = false, //false by default. represents if finger is on mobile device or mouse is clicked down in browser
 
-//startPos is start position. wherever we click in browser or where finger is on screen
+let isDragging = false, 
     startPos = 0,
     currentTranslate = 0,
     previousTranslate = 0,
