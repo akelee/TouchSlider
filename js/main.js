@@ -11,8 +11,7 @@ let isDragging = false,
     animationId = 0,//will use a method on the window object called requestAnimationFrame(). Returns specific id we can use to cancel requestframe
     currentIndex = 0 //reps current slide
 
-    //loop through a function
-    //.forEach is a function that accepts up to 3 arguments
+   
     slides.forEach((slide, index) => {
         //to get rid of selecting+hovering image when img is clicked. set to individual slide, querySelector to grab the image from inside specific slide we are on
         const slideImage =  slide.querySelector('img')
