@@ -13,7 +13,7 @@ let isDragging = false,
 
    
     slides.forEach((slide, index) => {
-        //to get rid of selecting+hovering image when img is clicked. set to individual slide, querySelector to grab the image from inside specific slide we are on
+        // get rid of selecting+hovering image when img is clicked. set to individual slide, querySelector to grab the image from inside specific slide we are on
         const slideImage =  slide.querySelector('img')
         
         slideImage.addEventListener('dragstart', (e)=>e.preventDefault())
