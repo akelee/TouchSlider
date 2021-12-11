@@ -43,8 +43,11 @@ window.oncontextmenu = function(event){
 
 function touchStart(index){
     return function(event){
+        currentIndex = index
+        startPos = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX
         isDragging = true
     }
+}
 function touchEnd(){
     console.log('end')
     isDragging = false
