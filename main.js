@@ -1,27 +1,31 @@
-const slider = document.querySelector('.slider-container'), 
-
+const slider = document.querySelector('.slider-container'),
+//array.from takes array-like obj eg:domlist and turn it into an array / from an iterable obj
 slides = Array.from(document.querySelectorAll('.slide'))
 
+//set global variable values
 
-let isDragging = false, 
+let isDragging = false,//false by default. represents if finger is on mobile device or mouse is clicked down in browser
+
+//startPos is start position. wherever we click in browser or where finger is on screen
     startPos = 0,
     currentTranslate = 0,
     prevTranslate = 0,
-    animationId = 0,
-    currentIndex = 0 
+    animationID = 0,//will use a method on the window object called requestAnimationFrame(). Returns specific id we can use to cancel requestframe
+    currentIndex = 0 //reps current slide
 
-  
+    //loop through a function
+    //.forEach is a function that accepts up to 3 arguments
     slides.forEach((slide, index) => {
         //to get rid of selecting+hovering image when img is clicked. set to individual slide, querySelector to grab the image from inside specific slide we are on
         const slideImage =  slide.querySelector('img')
         
-        slideImage.addEventListener('dragstart', (e)=>e.preventDefault())
-    
-    //Touch events
+        slideImage.addEventListener('dragstart', (e) => e.preventDefault())
+     //(e)=> run a function that takes in an event object. in event object, we call the function preventDefault(). preventDefault prevents dragging image behavior
 
+    //Touch events
     slide.addEventListener('touchstart', touchStart
     (index))
-    slide.addEventListener('touched', touchEnd)
+    slide.addEventListener('touchend', touchEnd)
     slide.addEventListener('touchmove', touchMove)
 
     //Mouse events
@@ -53,10 +57,20 @@ function touchStart(index){
 }
 function touchEnd(){
         isDragging = false
-        cancelAnimationFrame(animationId)
+        cancelAnimationFrame(animationID)
+        //snap in next slide past a certain amt of scrolling ends - lift finger or release mouse
+        const movedBy = currentTranslate - prevTranslate
+        if(movedBy < -100 && currentIndex < slides.length - 1) //negative is for swiping left
+        currentIndex += 1 //increment
+        if(movedBy > 100 && currentIndex > 0) //1st slide wont scroll to the right
+        currentIndex -= 1
+        
+        setPositionByIndex()
+
         //to end requestframe
         slider.classList.remove('grabbing')
 }
+
 function touchMove(event){
     if(isDragging){
         const currentPosition = getPositionX(event)
@@ -66,16 +80,23 @@ function touchMove(event){
 }
 
 function getPositionX(event) {
-    return event.type.includes('mouse') 
-        ? event.pageX 
-        : event.touches[0].clientX
-}
+    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX
+  }//event.pageX gives X position : else, we get it with event.touch[0].clientX - event.touch[0] we want the first index on this
 
 function animation(){
    setSliderPosition()
     if(isDragging) requestAnimationFrame(animation)
 }
 
-function setSliderPosition(){
+
+function setSliderPosition() {
     slider.style.transform = `translateX(${currentTranslate}px)`
+  }
+  
+//${} dynamic, 0 by default
+
+function setPositionByIndex() {
+    currentTranslate = currentIndex * -window.innerWidth//negative cos items swipe left
+    prevTranslate = currentTranslate
+    setSliderPosition()
 }
