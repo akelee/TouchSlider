@@ -6,7 +6,7 @@ slides = Array.from(document.querySelectorAll('.slide'))
 let isDragging = false, 
     startPos = 0,
     currentTranslate = 0,
-    previousTranslate = 0,
+    prevTranslate = 0,
     animationId = 0,
     currentIndex = 0 
 
