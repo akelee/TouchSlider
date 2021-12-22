@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: 'Open Sans', 'Sans-serif';
+    height: 100%;
+    width: 100%;
+    overflow: hidden;/*fullscreen no scrollbars*/
+    background-color: #333;
+    color: #fff;
+    line-height: 1.7;
+}
+
+.slider-container {
+    height: 100vh; /*viewport height: take up space of whole browser*/
+    display: inline-flex; /*lines each slider img horizontally. if uncomment overflow: hidden above, you will see it*/
+    overflow: hidden;
+    transform: translateX(0);/*default=0, this is for JS*/
+    transition: transform 0.3s ease-out;
+    cursor: grab; /*open hand*/
+}
+
+.slide {
+    max-height: 100vh;
+    width: 100vw;/*occupy whole page*/
+    display: flex;/*align everything*/
+    flex-direction: column; /*price goes below heading*/
+    align-items: center;
+    justify-content: center; /*centered hori+verti*/
+    padding: 1rem;
+    user-select: none;/*so user wont accidentally select whole page if sliding in wrong direction*/
+}
+
+.slide img {
+    max-width: 100%; /*take up full container width*/
+    max-height: 70%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.slide h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem ;/*move price down*/
+}
+
+.slide h4 {
+    font-size: 1.3rem;
+}
+
+.btn {
+    background-color: #444;
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem 1.5rem; /*T+B. L+R*/
+}
+
+.grabbing {
+    cursor: grabbing;
+}
+
+.grabbing .slide img {
+    transform: scale(0.9);/*shrinks when mouseover*/
+}
